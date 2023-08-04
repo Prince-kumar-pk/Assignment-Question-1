@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // Data
 import mockData from "../assets/data.json";
@@ -22,6 +22,8 @@ const Dashboard = () => {
 
   console.log(mockData.results.length); // Q1 
 
+  
+ 
   return (
     <div>
       <div className={styles.header}>
@@ -30,7 +32,7 @@ const Dashboard = () => {
           <Search
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-          /> 
+          />
           <Dropdown
             options={["GBP", "USD", "JPY", "EUR"]}
             onChange={(e) => setCurrency(e.target.value)}
@@ -49,7 +51,7 @@ const Dashboard = () => {
             title="Selected Order Timestamps"
           />
         </div>
-        <List rows={mockData.results} />
+        <List rows={mockData.results}  timestamp = {timestamps.results} />
       </div>
     </div>
   );

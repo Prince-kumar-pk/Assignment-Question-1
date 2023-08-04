@@ -5,7 +5,7 @@ import ListHeaderCell from "./ListHeaderCell";
 import styles from "./List.module.css";
 
 
-const List = ({ rows }) => {
+const List = ({ rows,timestamp }) => {
   return (
     <table className={styles.container}>
       <thead>
@@ -18,15 +18,23 @@ const List = ({ rows }) => {
         </ListHeader>
       </thead>
       <tbody>
-        {rows.map((row) => (
-          <ListRow key={row.key} >
+        {rows.map((row) => {
+
+    const crossTimeStampData = timestamp.find(item => row.id === item.id); // Q 2 Done
+
+          return (
+
+            <ListRow key={row.key} >
             <ListRowCell  >{row["&id"]}</ListRowCell>
             <ListRowCell>{row.executionDetails.buySellIndicator}</ListRowCell>
             <ListRowCell>{row.executionDetails.orderStatus}</ListRowCell>
-            <ListRowCell>{row.orderSubmitted}</ListRowCell>
+            {/* Question 2 Done */}
+            <ListRowCell>{crossTimeStampData.timestamps.orderSubmitted}</ListRowCell> 
             <ListRowCell>{row.bestExecutionData.orderVolume.USD}</ListRowCell>
           </ListRow>
-        ))}
+          )
+          
+        })}
       </tbody>
     </table>
   );
