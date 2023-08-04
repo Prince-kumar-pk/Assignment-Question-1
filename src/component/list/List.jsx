@@ -5,7 +5,11 @@ import ListHeaderCell from "./ListHeaderCell";
 import styles from "./List.module.css";
 
 
-const List = ({ rows,timestamp }) => {
+const List = ({ rows,timestamp,curr }) => {
+
+
+console.log("in list component "+curr);
+
   return (
     <table className={styles.container}>
       <thead>
@@ -14,14 +18,15 @@ const List = ({ rows,timestamp }) => {
           <ListHeaderCell>Buy/Sell</ListHeaderCell>
           <ListHeaderCell>Country</ListHeaderCell>
           <ListHeaderCell>Order Submitted</ListHeaderCell>
-          <ListHeaderCell>Order Volume / USD</ListHeaderCell>
+          {/* Problem 3 Solved */}
+          <ListHeaderCell>Order Volume / {curr} </ListHeaderCell>  
         </ListHeader>
       </thead>
       <tbody>
         {rows.map((row) => {
 
     const crossTimeStampData = timestamp.find(item => row.id === item.id); // Q 2 Done
-
+  
           return (
 
             <ListRow key={row.key} >
@@ -30,7 +35,8 @@ const List = ({ rows,timestamp }) => {
             <ListRowCell>{row.executionDetails.orderStatus}</ListRowCell>
             {/* Question 2 Done */}
             <ListRowCell>{crossTimeStampData.timestamps.orderSubmitted}</ListRowCell> 
-            <ListRowCell>{row.bestExecutionData.orderVolume.USD}</ListRowCell>
+            {/* Problem 3 Solved */}
+            <ListRowCell>{row.bestExecutionData.orderVolume[curr]}</ListRowCell>
           </ListRow>
           )
           

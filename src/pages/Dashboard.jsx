@@ -22,7 +22,7 @@ const Dashboard = () => {
 
   console.log(mockData.results.length); // Q1 
 
-  
+  // console.log(currency)
  
   return (
     <div>
@@ -51,7 +51,7 @@ const Dashboard = () => {
             title="Selected Order Timestamps"
           />
         </div>
-        <List rows={mockData.results}  timestamp = {timestamps.results} />
+        <List rows={mockData.results}  timestamp = {timestamps.results} curr = {currency} />
       </div>
     </div>
   );
