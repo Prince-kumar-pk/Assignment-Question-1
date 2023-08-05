@@ -20,7 +20,26 @@ const Dashboard = () => {
   const [selectedOrderDetails, setSelectedOrderDetails] = useState({});
   const [selectedOrderTimeStamps, setSelectedOrderTimeStamps] = useState({});
 
-  console.log(mockData.results.length); // Q1 
+  // console.log(mockData.results.length); // Q1 
+
+  const [filteredData, setFilteredData] = useState(mockData.results);
+
+  useEffect(() => {
+    // Filtered According to the search-text in the search bar by id because in that type of application the detail should be search by their unique ID
+   const filtered= mockData.results.filter(item =>{
+    console.log(item["&id"]);
+    console.log(searchText);
+    return (
+       item["&id"].toLowerCase().includes(searchText.toLowerCase())
+    )
+   }
+  );
+  console.log(filtered)
+  setFilteredData(filtered);
+  }, [searchText]);
+
+
+// console.log(filteredData);
 
   // console.log(currency)
  
@@ -51,7 +70,8 @@ const Dashboard = () => {
             title="Selected Order Timestamps"
           />
         </div>
-        <List rows={mockData.results}  timestamp = {timestamps.results} curr = {currency} />
+        {/* Pass here a filtered data that contain  filtered according to search and if nothing in search bar then it pass whole data.*/}
+        <List rows={filteredData}  timestamp = {timestamps.results} curr = {currency} />
       </div>
     </div>
   );

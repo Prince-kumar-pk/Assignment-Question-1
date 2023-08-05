@@ -8,7 +8,7 @@ import styles from "./List.module.css";
 const List = ({ rows,timestamp,curr }) => {
 
 
-console.log("in list component "+curr);
+// console.log("in list component "+curr);
 
   return (
     <table className={styles.container}>
