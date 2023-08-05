@@ -22,7 +22,7 @@ const Dashboard = () => {
   const [selectedOrderTimeStamps, setSelectedOrderTimeStamps] = useState({});
   const [selectRow, setSelectRow] = useState(`${mockData.results[0]["&id"]}`);
 
-console.log( "selected ROW", selectRow)
+// console.log( "selected ROW", selectRow)
 
   // console.log(mockData.results.length); // Q1 
 
@@ -31,39 +31,39 @@ console.log( "selected ROW", selectRow)
   useEffect(() => {
     // Filtered According to the search-text in the search bar by id because in that type of application the detail should be search by their unique ID
    const filtered= mockData.results.filter(item =>{
-    console.log(item["&id"]);
-    console.log(searchText);
+    // console.log(item["&id"]);
+    // console.log(searchText);
     return (
        item["&id"].toLowerCase().includes(searchText.toLowerCase())
     )
    }
   );
-  console.log(filtered)
+  // console.log(filtered)
   setFilteredData(filtered);
 
 
 //Problem Statement 6 
 const selectdetail = mockData.results.find(item => item["&id"]=== selectRow)
 
-console.log(selectdetail.executionDetails)
+// console.log(selectdetail.executionDetails)
 setSelectedOrderDetails(selectdetail.executionDetails);
-console.log("Array" ,selectedOrderDetails);
+// console.log("Array" ,selectedOrderDetails);
 
 const selectdetailtime = timestamps.results.find(item => item["&id"]=== selectRow)
 
-console.log("TimeStamp",selectdetailtime.timestamps)
+// console.log("TimeStamp",selectdetailtime.timestamps)
 setSelectedOrderTimeStamps(selectdetailtime.timestamps);
 // console.log("Array" ,selectedOrderDetails);
 
-  }, [searchText, selectRow]);
+  }, [searchText, selectRow,selectedOrderDetails]);
 
 //
 const handleID =(newId)=>{
-  console.log("clicked",newId)
+  // console.log("clicked",newId)
 setSelectRow(newId);
 // console.log(selectRow);
 }
-console.log( "hello", selectRow);
+// console.log( "hello", selectRow);
 // console.log(filteredData);
 
   // console.log(currency)

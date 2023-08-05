@@ -7,7 +7,6 @@ import styles from "./List.module.css";
 
 const List = ({ rows,timestamp,curr, handleID }) => {
 
-
 // console.log("in list component "+curr);
 
   return (
@@ -23,12 +22,14 @@ const List = ({ rows,timestamp,curr, handleID }) => {
         </ListHeader>
       </thead>
       <tbody>
-        {rows.map((row) => {
-
+        {
+        
+        rows.map((row,i) => {
+          
     const crossTimeStampData = timestamp.find(item => row.id === item.id); // Q 2 Done
   
           return (
-            <ListRow key={row.key} handleID={handleID} id = {row["&id"]}
+            <ListRow key={i} handleID={handleID} id = {row["&id"]}
             >
             <ListRowCell  >{row["&id"]}</ListRowCell>
             <ListRowCell>{row.executionDetails.buySellIndicator}</ListRowCell>
