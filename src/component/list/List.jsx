@@ -5,7 +5,7 @@ import ListHeaderCell from "./ListHeaderCell";
 import styles from "./List.module.css";
 
 
-const List = ({ rows,timestamp,curr }) => {
+const List = ({ rows,timestamp,curr, handleID }) => {
 
 
 // console.log("in list component "+curr);
@@ -28,8 +28,8 @@ const List = ({ rows,timestamp,curr }) => {
     const crossTimeStampData = timestamp.find(item => row.id === item.id); // Q 2 Done
   
           return (
-
-            <ListRow key={row.key} >
+            <ListRow key={row.key} handleID={handleID} id = {row["&id"]}
+            >
             <ListRowCell  >{row["&id"]}</ListRowCell>
             <ListRowCell>{row.executionDetails.buySellIndicator}</ListRowCell>
             <ListRowCell>{row.executionDetails.orderStatus}</ListRowCell>

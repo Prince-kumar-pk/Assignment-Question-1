@@ -13,12 +13,16 @@ import List from "../component/list/List";
 // Styles
 import styles from "./Dashboard.module.css";
 import Card from "../component/card/Card";
+import { findAllByAltText } from "@testing-library/react";
 
 const Dashboard = () => {
   const [currency, setCurrency] = useState("EUR");
   const [searchText, setSearchText] = useState("");
   const [selectedOrderDetails, setSelectedOrderDetails] = useState({});
   const [selectedOrderTimeStamps, setSelectedOrderTimeStamps] = useState({});
+  const [selectRow, setSelectRow] = useState(`${mockData.results[0]["&id"]}`);
+
+console.log( "selected ROW", selectRow)
 
   // console.log(mockData.results.length); // Q1 
 
@@ -36,9 +40,30 @@ const Dashboard = () => {
   );
   console.log(filtered)
   setFilteredData(filtered);
-  }, [searchText]);
 
 
+//Problem Statement 6 
+const selectdetail = mockData.results.find(item => item["&id"]=== selectRow)
+
+console.log(selectdetail.executionDetails)
+setSelectedOrderDetails(selectdetail.executionDetails);
+console.log("Array" ,selectedOrderDetails);
+
+const selectdetailtime = timestamps.results.find(item => item["&id"]=== selectRow)
+
+console.log("TimeStamp",selectdetailtime.timestamps)
+setSelectedOrderTimeStamps(selectdetailtime.timestamps);
+// console.log("Array" ,selectedOrderDetails);
+
+  }, [searchText, selectRow]);
+
+//
+const handleID =(newId)=>{
+  console.log("clicked",newId)
+setSelectRow(newId);
+// console.log(selectRow);
+}
+console.log( "hello", selectRow);
 // console.log(filteredData);
 
   // console.log(currency)
@@ -51,7 +76,7 @@ const Dashboard = () => {
           <Search
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
-          />
+          /> 
           <Dropdown
             options={["GBP", "USD", "JPY", "EUR"]}
             onChange={(e) => setCurrency(e.target.value)}
@@ -71,7 +96,7 @@ const Dashboard = () => {
           />
         </div>
         {/* Pass here a filtered data that contain  filtered according to search and if nothing in search bar then it pass whole data.*/}
-        <List rows={filteredData}  timestamp = {timestamps.results} curr = {currency} />
+        <List rows={filteredData}  timestamp = {timestamps.results} curr = {currency}  handleID = {handleID}  />
       </div>
     </div>
   );
