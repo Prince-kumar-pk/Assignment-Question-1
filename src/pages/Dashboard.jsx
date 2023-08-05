@@ -13,7 +13,7 @@ import List from "../component/list/List";
 // Styles
 import styles from "./Dashboard.module.css";
 import Card from "../component/card/Card";
-import { findAllByAltText } from "@testing-library/react";
+
 
 const Dashboard = () => {
   const [currency, setCurrency] = useState("EUR");
