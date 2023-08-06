@@ -1,6 +1,6 @@
 const Dropdown = ({ options, onChange, selectedItem }) => {
 
-  // console.log(selectedItem);
+ 
 
   return (
     <select
